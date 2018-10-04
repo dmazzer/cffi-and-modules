@@ -11,3 +11,5 @@ int memget(void);
 int * new_meminit(int v);
 void setvs(vs * vs_struct, int value );
 int getvs(vs *vs_struct);
+void external_initmem(int* localptr);
+int getptr2(void);

@@ -6,6 +6,7 @@
 
 int global_variable = 0;
 int *globalptr;
+int *globalptr2;
 
 void setvar(int v)
 {
@@ -22,6 +23,11 @@ void meminit(int v)
     globalptr = malloc(10*sizeof(int));
     for(int i=0; i<10; i++)
         globalptr[i] = v;
+}
+
+int memget(void)
+{
+    return globalptr[0];
 }
 
 void setvs(vs * vs_struct, int value )
@@ -44,9 +50,14 @@ int * new_meminit(int v)
 }
 
 
-int memget(void)
+void external_initmem(int* localptr)
 {
-    return globalptr[0];
+    globalptr2 = localptr;
+}
+
+int getptr2(void)
+{
+    return globalptr2[0];
 }
 
 int main (void)

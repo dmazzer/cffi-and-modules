@@ -3,6 +3,7 @@ import _cprog
 class Prog():
     def __init__(self):
         self.vs_struct = _cprog.ffi.new('vs *')
+        self.gint = _cprog.ffi.new('int[10]')
     
     def get_struct(self):
         return self.vs_struct
@@ -32,3 +33,14 @@ class Prog():
     def vsget(self, v):
         print('get from m2: ' +str(v.v1))
         v = _cprog.lib.getvs(_cprog.ffi.cast('vs *', v))
+    
+    def init_gint(self, value):
+        print('set from m2: ' +str(value))
+        for i in range(0,10):
+            self.gint[i] = _cprog.ffi.cast('int', value)
+        _cprog.lib.external_initmem(_cprog.ffi.cast('int *', self.gint))
+
+    def getptr2(self):
+        v = _cprog.lib.getptr2()
+        print('get from m2: ' +str(v))
+        return v
